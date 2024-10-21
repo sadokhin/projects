@@ -1,0 +1,15 @@
+intermark:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      keyfile: ../gcp_intermark_creds.json
+      project: intermark-analytics-prod
+      schema: dbt_staging
+      location: europe-west3
+      threads: 4
+
+source-paths:
+  - models/staging/amocrm
+  - models/marts/core
