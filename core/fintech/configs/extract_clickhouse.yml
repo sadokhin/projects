@@ -1,0 +1,315 @@
+clickhouse:
+  - instance: ch_prod2
+    databases:
+      - name: rox_eth
+        tables: 
+          - name: chappie_arb_ops
+            cursor: timestamp
+            cursor_value: '2024-03-28 00:00:00'
+            fields: block_number,timestamp,toString(hash) as hash,symbol_base,symbol_quote,is_dex_buying,size,price_dex,price_cex,price_eth_usd,price_btc_usd,source_dex,source_cex,profit_bps,profit_usd,x,xmd,host,chain,mined,is_canceled,gas_used,gas_price,bribe
+            filters: hash != 'dryRun'
+            chunk_size: 5000
+
+      - name: metrics_orbit_eth
+        tables: 
+          - name: ptc_metric_records
+            cursor: time_app
+            cursor_value: '2024-03-01 00:00:00'
+            fields: chain,host,instance,block_height,event_code,tag,event,time_delta,tx_hash,time_app,value
+            filters: event in ('FoundTrade', 'HttpStart','SendOtc', 'ParseHash', 'ParseDone','NetworkDelay','FoundManagerTx')
+            chunk_size: 5000
+
+      - name: metrics_orbit_bsc
+        tables: 
+          - name: ptc_metric_records
+            cursor: time_app
+            cursor_value: '2024-04-30 00:00:00'
+            fields: chain,host,instance,block_height,event_code,tag,event,time_delta,tx_hash,time_app,value
+            filters: event in ('FoundTrade', 'HttpStart','SendOtc', 'ParseHash', 'ParseDone','NetworkDelay','FoundManagerTx')
+            chunk_size: 5000
+
+      - name: sanduk_orbit_eth
+        tables: 
+          - name: http_dumps
+            cursor: start
+            cursor_value: '2024-03-28 00:00:00'
+            fields: chain,start,finish,block,url,post,status,body,tx_hash,tag,instance
+            filters: status=200 and body like '%"success":true%' and JSON_VALUE(body, '$.result[0].type') = '' and JSON_QUERY(body, '$.result.allow_assets') = ''
+            chunk_size: 100
+
+      - name: sanduk_orbit_bsc
+        tables: 
+          - name: http_dumps
+            cursor: start
+            cursor_value: '2024-05-05 00:00:00'
+            fields: chain,start,finish,block,url,post,status,body,tx_hash,tag,instance
+            filters: status=200 and body like '%"success":true%' and JSON_VALUE(body, '$.result[0].type') = '' and JSON_QUERY(body, '$.result.allow_assets') = ''
+            chunk_size: 100
+
+      - name: metrics_rox_eth
+        tables:
+          - name: prod_chappie_new_block_received
+            cursor: timestamp
+            cursor_value: '2024-03-01 00:00:00'
+            fields: host,parseDateTime64BestEffort(timestamp) as timestamp,block_hash,block_number
+            chunk_size: 5000
+
+      - name: rox_bsc
+        tables: 
+          - name: chappie_arb_ops
+            cursor: timestamp
+            cursor_value: '2024-04-18 00:00:00'
+            fields: block_number,timestamp,toString(hash) as hash,symbol_base,symbol_quote,is_dex_buying,size,price_dex,price_cex,price_eth_usd,price_btc_usd,source_dex,source_cex,profit_bps,profit_usd,x,xmd,host,chain,mined,is_canceled,if(gas_used='',0,cast(gas_used as UInt64)) as gas_used,if(gas_price='',0,cast(gas_price as UInt64)) as gas_price,if(bribe='',0,cast(bribe as UInt64)) as bribe
+            filters: hash != 'dryRun'
+            chunk_size: 5000   
+
+      - name: metrics_rox_bsc
+        tables:
+          - name: prod_chappie_new_block_received
+            cursor: timestamp
+            cursor_value: '2024-04-18 00:00:00'
+            fields: host,parseDateTime64BestEffort(timestamp) as timestamp,block_hash,block_number
+            chunk_size: 5000      
+
+  - instance: ch_prod3
+    databases:
+      - name: rox_eth
+        tables: 
+          - name: chappie_arb_ops
+            cursor: timestamp
+            cursor_value: '2024-03-28 00:00:00'
+            fields: block_number,timestamp,toString(hash) as hash,symbol_base,symbol_quote,is_dex_buying,size,price_dex,price_cex,price_eth_usd,price_btc_usd,source_dex,source_cex,profit_bps,profit_usd,x,xmd,host,chain,mined,is_canceled,gas_used,gas_price,bribe
+            filters: hash != 'dryRun'
+            chunk_size: 5000
+
+          - name: chappie_graph_swaps
+            cursor: timestamp
+            cursor_value: '2024-08-30 19:30:00'
+            fields: chain,host,parseDateTime64BestEffort(timestamp) as timestamp,block_number,x,pool_id,token_out,token_in,amount_out,amount_in
+            chunk_size: 5000
+
+      - name: metrics_orbit_eth
+        tables: 
+          - name: ptc_metric_records
+            cursor: time_app
+            cursor_value: '2024-03-01 00:00:00'
+            fields: chain,host,instance,block_height,event_code,tag,event,time_delta,tx_hash,time_app,value
+            filters: event in ('FoundTrade', 'HttpStart','SendOtc', 'ParseHash', 'ParseDone','NetworkDelay','FoundManagerTx')
+            chunk_size: 5000
+
+      - name: sanduk_orbit_eth
+        tables: 
+          - name: http_dumps
+            cursor: start
+            cursor_value: '2024-03-28 00:00:00'
+            fields: chain,start,finish,block,url,post,status,body,tx_hash,tag,instance
+            filters: status=200 and body like '%"success":true%' and JSON_VALUE(body, '$.result[0].type') = '' and JSON_QUERY(body, '$.result.allow_assets') = ''
+            chunk_size: 100
+
+      - name: metrics_rox_eth
+        tables:
+          - name: prod_chappie_new_block_received
+            cursor: timestamp
+            cursor_value: '2024-03-01 00:00:00'
+            fields: host,parseDateTime64BestEffort(timestamp) as timestamp,block_hash,block_number
+            chunk_size: 5000
+
+  - instance: ch_qb
+    databases:
+      - name: rox_eth
+        tables: 
+          - name: chappie_arb_ops
+            cursor: timestamp
+            cursor_value: '2024-03-28 00:00:00'
+            fields: block_number,timestamp,toString(hash) as hash,symbol_base,symbol_quote,is_dex_buying,size,price_dex,price_cex,price_eth_usd,price_btc_usd,source_dex,source_cex,profit_bps,profit_usd,x,xmd,host,chain,mined,is_canceled,gas_used,gas_price,bribe
+            filters: hash != 'dryRun' and is_canceled = false
+            chunk_size: 5000
+            
+          - name: chappie_graph_swaps
+            cursor: timestamp
+            cursor_value: '2024-07-26 00:00:00'
+            fields: chain,host,parseDateTime64BestEffort(timestamp) as timestamp,block_number,x,pool_id,token_out,token_in,amount_out,amount_in
+            chunk_size: 5000
+
+      - name: rox_arbitrum
+        tables: 
+          - name: chappie_arb_ops
+            cursor: timestamp
+            cursor_value: '2024-04-26 00:00:00'
+            fields: block_number,timestamp,toString(hash) as hash,symbol_base,symbol_quote,is_dex_buying,size,price_dex,price_cex,price_eth_usd,price_btc_usd,source_dex,source_cex,profit_bps,profit_usd,x,xmd,host,chain,mined,is_canceled,if(gas_used='',0,cast(gas_used as UInt64)) as gas_used,if(gas_price='',0,cast(gas_price as UInt64)) as gas_price,if(bribe='',0,cast(bribe as UInt64)) as bribe
+            filters: hash != 'dryRun' and is_canceled = false
+            chunk_size: 5000
+
+      - name: rox_eth_tokyo
+        tables: 
+          - name: chappie_arb_ops
+            cursor: timestamp
+            cursor_value: '2024-05-23 00:00:00'
+            fields: block_number,timestamp,toString(hash) as hash,symbol_base,symbol_quote,is_dex_buying,size,price_dex,price_cex,price_eth_usd,price_btc_usd,source_dex,source_cex,profit_bps,profit_usd,x,xmd,host,chain,mined,is_canceled,if(gas_used='',0,cast(gas_used as UInt64)) as gas_used,if(gas_price='',0,cast(gas_price as UInt64)) as gas_price,if(bribe='',0,cast(bribe as UInt64)) as bribe
+            filters: hash != 'dryRun' and is_canceled = false
+            chunk_size: 5000
+
+      - name: metrics_orbit_eth
+        tables: 
+          - name: ptc_metric_records
+            cursor: time_app
+            cursor_value: '2024-03-01 00:00:00'
+            fields: chain,host,instance,block_height,event_code,tag,event,time_delta,tx_hash,time_app, value
+            filters: event in ('FoundTrade', 'HttpStart','SendOtc', 'ParseHash', 'ParseDone','NetworkDelay','FoundManagerTx')
+            chunk_size: 5000
+
+      - name: metrics_orbit_arbitrum
+        tables: 
+          - name: ptc_metric_records
+            cursor: time_app
+            cursor_value: '2024-04-26 00:00:00'
+            fields: chain,host,instance,block_height,event_code,tag,event,time_delta,tx_hash,time_app, value
+            filters: event in ('FoundTrade', 'HttpStart','SendOtc', 'ParseHash', 'ParseDone','NetworkDelay','FoundManagerTx')
+            chunk_size: 5000
+
+      - name: sanduk_orbit_eth
+        tables: 
+          - name: http_dumps
+            cursor: start
+            cursor_value: '2024-03-28 00:00:00'
+            fields: chain,start,finish,block,url,post,status,body,tx_hash,tag,instance
+            filters: status=200 and body like '%"success":true%' and JSON_VALUE(body, '$.result[0].type') = '' and JSON_QUERY(body, '$.result.allow_assets') = ''
+            chunk_size: 100
+
+      - name: sanduk_orbit_arbitrum
+        tables: 
+          - name: http_dumps
+            cursor: start
+            cursor_value: '2024-04-26 00:00:00'
+            fields: chain,start,finish,block,url,post,status,body,tx_hash,tag,instance
+            filters: status=200 and body like '%"success":true%' and JSON_VALUE(body, '$.result[0].type') = '' and JSON_QUERY(body, '$.result.allow_assets') = ''
+            chunk_size: 100
+
+      - name: sanduk_orbit_eth_tokyo
+        tables: 
+          - name: http_dumps
+            cursor: start
+            cursor_value: '2024-05-23 00:00:00'
+            fields: chain,start,finish,block,url,post,status,body,tx_hash,tag,instance
+            filters: status=200 and body like '%"success":true%' and JSON_VALUE(body, '$.result[0].type') = '' and JSON_QUERY(body, '$.result.allow_assets') = ''
+            chunk_size: 100
+
+      - name: sanduk_orbit_eth_london_graph
+        tables: 
+          - name: http_dumps
+            cursor: start
+            cursor_value: '2024-09-10 00:00:00'
+            fields: chain,start,finish,block,url,post,status,body,tx_hash,tag,instance
+            filters: status=200 and body like '%"success":true%' and JSON_VALUE(body, '$.result[0].type') = '' and JSON_QUERY(body, '$.result.allow_assets') = ''
+            chunk_size: 100
+
+      - name: metrics_rox_eth
+        tables:
+          - name: prod_chappie_new_block_received
+            cursor: timestamp
+            cursor_value: '2024-03-01 00:00:00'
+            fields: host,parseDateTime64BestEffort(timestamp) as timestamp,block_hash,block_number
+            chunk_size: 5000
+
+      - name: metrics_rox_eth_tokyo
+        tables:
+          - name: prod_chappie_new_block_received
+            cursor: timestamp
+            cursor_value: '2024-05-28 00:00:00'
+            fields: host,parseDateTime64BestEffort(timestamp) as timestamp,block_hash,block_number
+            chunk_size: 5000
+
+      - name: metrics_rox_arbitrum
+        tables:
+          - name: prod_chappie_new_block_received
+            cursor: timestamp
+            cursor_value: '2024-04-26 00:00:00'
+            fields: host,parseDateTime64BestEffort(timestamp) as timestamp,block_hash,block_number
+            chunk_size: 5000
+
+  - instance: ch_prod
+    databases:
+      - name: roxana
+        tables: 
+          - name: otc_data
+            cursor: ts
+            cursor_value: '2024-03-01 00:00:00.000'
+            fields: if(ts='', parseDateTime64BestEffort('1970-01-01 00:00:00.000'),parseDateTime64BestEffort(ts,6)) as ts,type,user_comment,user_deal_id,currency_base,side,currency_quote,price,size
+            chunk_size: 5000
+          
+          - name: contract_data
+            cursor: write_timestamp
+            cursor_value: '2024-03-01 00:00:00.000'
+            fields: if(write_timestamp='', parseDateTime64BestEffort('1970-01-01 00:00:00.000'),parseDateTime64BestEffort(write_timestamp,6)) as write_timestamp, block_timestamp, block_mined_timestamp, block_number, hash, pair, side, `size`, price, base, quote, base_amount, quote_amount
+            chunk_size: 5000
+
+      - name: cornelia
+        tables:
+          - name: bi_historical
+            cursor: timestamp
+            cursor_value: '2024-06-01 00:00:00.000'
+            fields: timestamp,protocol,token_symbols,token_amounts,token_amounts_usd,block
+            filters: protocol in ('uni-bsc','uni-fw','arbitrum-fw') and is_contract = 1
+            chunk_size: 5000
+
+      - name: sanduk_ptc_eth_taffy
+        tables: 
+          - name: canonical_liquidations_aave_chainlink
+            cursor: block_timestamp
+            cursor_value: '2023-01-01 00:00:00.000'
+            fields: tx_hash,block_timestamp,borrower,liquidator,push_token,pull_token,profit_usd,push_usd,pull_usd,fee_usd,repay_amount,seize_amount,block_height
+            chunk_size: 5000
+  
+          - name: canonical_liquidations_chainlink
+            cursor: block_timestamp
+            cursor_value: '2023-01-01 00:00:00.000'
+            fields: tx_hash,block_timestamp,borrower,liquidator,push_token,pull_token,profit_usd,push_usd,pull_usd,fee_usd,repay_amount,seize_amount,block_height
+            chunk_size: 5000
+    
+          - name: canonical_liquidations_aave_v3_chainlink
+            cursor: block_timestamp
+            cursor_value: '2023-01-01 00:00:00.000'
+            fields: tx_hash,block_timestamp,borrower,liquidator,push_token,pull_token,profit_usd,push_usd,pull_usd,fee_usd,repay_amount,seize_amount,block_height
+            chunk_size: 5000
+  
+          - name: canonical_liquidations_maker_chainlink
+            cursor: block_timestamp
+            cursor_value: '2023-01-01 00:00:00.000'
+            fields: tx_hash,block_timestamp,borrower,liquidator,push_token,pull_token,profit_usd,push_usd,pull_usd,fee_usd,repay_amount,seize_amount,block_height
+            chunk_size: 5000
+  
+      - name: sanduk_ptc_avax_main
+        tables: 
+          - name: canonical_aave_liquidation_cost_v2_avalanches
+            cursor: block_timestamp
+            cursor_value: '2023-01-01 00:00:00.000'
+            fields: tx_hash,block_timestamp,borrower,liquidator,push_token,pull_token,profit_usd,push_usd,pull_usd,fee_usd,repay_amount,seize_amount,block_height
+            chunk_size: 5000
+
+          - name: canonical_aave_liquidation_cost_v3_avalanches
+            cursor: block_timestamp
+            cursor_value: '2023-01-01 00:00:00.000'
+            fields: tx_hash,block_timestamp,borrower,liquidator,push_token,pull_token,profit_usd,push_usd,pull_usd,fee_usd,repay_amount,seize_amount,block_height
+            chunk_size: 5000
+
+      - name: sanduk_ptc_bsc_main
+        tables: 
+          - name: canonical_venus_liquidation_cost_v2_binances
+            cursor: block_timestamp
+            cursor_value: '2023-01-01 00:00:00.000'
+            fields: tx_hash,block_timestamp,borrower,liquidator,push_token,pull_token,profit_usd,push_usd,pull_usd,fee_usd,repay_amount,seize_amount,block_height
+            chunk_size: 5000
+
+  - instance: ch_52
+    databases:
+      - name: geth_log
+        tables: 
+          - name: hash_log
+            cursor: received_at
+            dest_table_name: swarm_txs
+            cursor_value: '2024-09-30 00:00:00.000'
+            fields: hash,min(received_at) as received_ts
+            chunk_size: 5000
+            group_by: 1
+            order_by: 2
+      

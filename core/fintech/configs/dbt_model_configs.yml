@@ -1,0 +1,32 @@
+# Table with primary key and partition
+{{
+    config (
+      materialized='table',
+      engine='MergeTree()',
+      order_by='(tx_hash,hedge_start)',
+      partition_by='toYYYYMMDD(hedge_start)',
+      primary_key='tx_hash'
+    )
+}}
+
+# Increment to table with delete+insert mode
+{{
+    config (
+      materialized='incremental',
+      engine='MergeTree()',
+      order_by='hedge_start',
+      unique_key='tx_hash',
+      incremental_strategy='delete+insert'
+    )
+}}
+
+# Increment for table with insert only mode
+{{ 
+    config (
+        order_by='(block_timestamp)', 
+        engine='MergeTree()', 
+        materialized='incremental', 
+        unique_key='tx_hash', 
+        incremental_strategy='append'
+    ) 
+}}

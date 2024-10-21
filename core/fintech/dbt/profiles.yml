@@ -1,0 +1,19 @@
+analytics:
+  target: dev
+  outputs:
+    dev:
+      type: clickhouse 
+      host: "{{ env_var('DBT_HOST') }}"
+      port: "{{ env_var('DBT_PORT') | as_number }}"
+      user: "{{ env_var('DBT_USER') }}"
+      password: "{{ env_var('DBT_ENV_SECRET_PASSWORD') }}"
+      driver: http
+      schema: dbt_staging
+      use_lw_deletes: true
+      connect_timeout: 10
+      send_receive_timeout: 300
+      sync_request_timeout: 5
+
+source-paths:
+  - models/staging
+  - models/marts

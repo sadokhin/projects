@@ -1,0 +1,59 @@
+{
+    "tickers" : [
+        {
+            "otcTicker": "bMKRETH",
+            "threshold_perc90": 10,
+            "enabled": false
+        },
+        {
+            "otcTicker": "bETHWBT",
+            "threshold_perc90": 8,
+            "enabled": true
+        },
+        {
+            "otcTicker": "bAVEETH",
+            "threshold_perc90": 7,
+            "enabled": false
+        },
+        {
+            "otcTicker": "bETHUSC",
+            "threshold_perc90": 6,
+            "enabled": true
+        },
+        {
+            "otcTicker": "bMTIETH",
+            "threshold_perc90": 7,
+            "enabled": false
+        },
+        {
+            "otcTicker": "bETHUST",
+            "threshold_perc90": 6,
+            "enabled": true
+        },
+        {
+            "otcTicker": "bENSETH",
+            "threshold_perc90": 7,
+            "enabled": false
+        },
+        {
+            "otcTicker": "bWBTUSC",
+            "threshold_perc90": 8,
+            "enabled": true
+        },
+        {
+            "otcTicker": "bWBTUST",
+            "threshold_perc90": 8,
+            "enabled": true
+        },
+        {
+            "otcTicker": "bQNTETH",
+            "threshold_perc90": 7,
+            "enabled": false
+        },
+        {
+            "otcTicker": "bUNIETH",
+            "threshold_perc90": 7,
+            "enabled": false
+        }
+    ]
+}

@@ -1,0 +1,144 @@
+version: 3
+
+models:
+    - name: trading_volume
+      description: Financial data mart with all trading volumes by pair type, trading strategy, time till block, setup, chain and hour
+      columns:
+        - name: date_hour
+          description: Report date till hour (YYYY-MM-DD HH:00:00)
+          tests:
+            - not_null
+        - name: pair
+          description: Trade coin's pair type. If stable or BTC then Liquid else Shit
+          tests:
+            - not_null
+            - accepted_values:
+                values: ['Liquid', 'Shit']
+        - name: blockchain
+          description: Chain where we trade
+        - name: dex_size
+          description: Parameter for dex_volume if size of dex tx out of our config or in our config. If less then 'less', if more than 'more', else 'between'
+        - name: instance
+          description: Roxana setup - FSN,LND,QB,TOKYO
+        - name: block_recevied_sec
+          description: Time in seconds till the next block
+        - name: strategy
+          description: Trading strategy from arb ops. If mined = True then 'mined' else 'mempool'
+        - name: surr_key
+          description: Unique key for each 'date_hour','pair','blockchain','dex_size','instance','block_recevied_sec','strategy'
+        - name: dex_volume
+          description: Size's sum in USD for each dex tx (devided by dex_size parameter)
+        - name: arb_volume
+          description: Size's sum in USD the most profitable tx for each pair in block
+        - name: tradable_volume
+          description: Size's sum in USD the most profitable tx for each pair in FLashbot's block. Applicable only for ETH chain
+        - name: ops_count
+          description: Number of the most profitable tx for each pair in block from all setups and chains
+        - name: traded_volume
+          description: Size's sum in USD of our deals
+        - name: gross_profit
+          description: Diff between CEX and DEX prices multiply to size and convert to USD
+        - name: algo_fee
+          description: Fees to our OTC. Calculated as 2 bps from quote amount and conveted to USD
+        - name: base_fee
+          description: Fees that we hedge with transaction in USD
+        - name: bribe
+          description: Bribe that we hedge with transaction in USD
+        - name: deals
+          description: Number of our deals, excluded failed and reorgs
+        - name: base_fee_failed
+          description: Fees for failed transactions in USD
+        - name: txs
+          description: Number of our transactions that we sent to chain, included failed and reorgs
+
+    - name: roxana_rivals
+      description: All transactions from BSC and ETH pools where we trade with flag why we didnt get it and calculated CEX prices, profits
+      columns:
+        - name: timestamp
+          description: Timestamp of tx from GraphQL
+        - name: tx_hash
+          description: Transaction hash in chain
+        - name: from
+          description: The sending party of transaction
+        - name: to
+          description: The receiving party of transaction (could be contract address)
+        - name: chain
+          description: The chain for pool
+        - name: pool_id
+          description: Pool address in dex
+        - name: dex_name
+          description: DEX name
+        - name: block_number
+          description: Block number in chain
+        - name: miner
+          description: Miner or builder of the block
+        - name: pair
+          description: Coin's pair in DEX
+        - name: otc_ticker
+          description: Coin's pair in OTC
+        - name: pair_type
+          description: Trade coin's pair type. If stable or BTC then Liquid else Shit
+        - name: dex_side
+          description: Side of transaction in DEX
+        - name: symbol_base
+          description: Coin symbol base
+        - name: symbol_quote
+          description: Coin symbol quote
+        - name: size_quote
+          description: Size of quote symbol
+        - name: size_base
+          description: Size of base symbol
+        - name: amountUSD
+          description: Transaction volume in USD
+        - name: bribe
+          description: Bribe for transaction in USD
+        - name: gas_used
+          description: Gas used
+        - name: gas_price
+          description: Price for gas in WEI
+        - name: dex_price
+          description: DEX Price for symbol qoute
+        - name: cex_price_prem
+          description: Expected CEX price, calculated by prices with algo premium
+        - name: cex_market_price
+          description: Expected CEX price, calculated by prices without algo premium
+        - name: cex_size_prem
+          description: Size for price that we found from OTC
+        - name: cex_price_80_bribe
+          description: Expected CEX price, calculated with 80% bribe share by formula - dex_price / (1 + bribe / amountUSD / 0.8)
+        - name: cex_price_90_bribe
+          description: Expected CEX price, calculated with 90% bribe share by formula - dex_price / (1 + bribe / amountUSD / 0.9)
+        - name: cex_price_100_bribe
+          description: Expected CEX price, calculated with 100% bribe share by formula - dex_price / (1 + bribe / amountUSD / 1)
+        - name: gross_profit_market_price
+          description: Diff between CEX Market price and DEX price multiply to size and convert to USD
+        - name: gross_profit_80_bribe
+          description: Diff between CEX 80% bribe share and DEX price multiply to size and convert to USD
+        - name: gross_profit_90_bribe
+          description: Diff between CEX 90% bribe share and DEX price multiply to size and convert to USD
+        - name: gross_profit_100_bribe
+          description: Diff between CEX 100% bribe share and DEX price multiply to size and convert to USD
+        - name: gross_profit_algo_prem
+          description: Diff between CEX with prem and DEX price multiply to size and convert to USD
+        - name: flag
+          description: mark if transaction is sandwich, backrun, our deal, not fb block, private block, without price, disabled trading from config, more than 1 swap in tx, out of our config
+        - name: base_fee
+          description: Transaction fee in USD
+
+    - name: arb_ops_bug_report
+      description: data mart with all arb ops with reason why they didn't mined
+      
+    - name: hedge_body
+      description: data mart with hedge transaction body stat
+
+    - name: hedge_fees
+      description: data mart with hedge transaction fees stat
+
+    - name: hedge_bribe
+      description: data mart with hedge transaction bribe stat
+
+    - name: roxana_rivals2
+      description: optimized version of roxana_rivals for test
+
+    - name: algo_premiums
+      description: OTC premiums for each ticker, side, size and host

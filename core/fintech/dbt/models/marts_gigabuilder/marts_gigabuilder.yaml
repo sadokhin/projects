@@ -1,0 +1,5 @@
+version: 2
+
+models:
+    - name: eth_blocks
+      description: data mart with all blocks from ETH blockchain

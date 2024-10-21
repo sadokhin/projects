@@ -1,0 +1,78 @@
+version: 2
+
+sources:
+  - name: raw_ch_prod
+    database: raw_ch_prod 
+    tables:
+      - name: contract_data
+      - name: otc_data
+      - name: bi_historical
+      - name: taffy_canonical_liquidations_aave_chainlink
+      - name: taffy_canonical_liquidations_aave_v3_chainlink
+      - name: taffy_canonical_liquidations_chainlink
+      - name: taffy_canonical_liquidations_maker_chainlink
+      - name: canonical_aave_liquidation_cost_v2_avalanches
+      - name: canonical_aave_liquidation_cost_v3_avalanches
+      - name: canonical_venus_liquidation_cost_v2_binances
+
+  - name: raw_ch_52
+    database: raw_ch_52 
+    tables:
+      - name: swarm
+      - name: swarm_txs
+
+  - name: raw_ch_prod2
+    database: raw_ch_prod2
+    tables:
+      - name: chappie_arb_ops
+      - name: bsc_chappie_arb_ops
+      - name: txs_data
+      - name: roxana_deals
+      - name: prod_chappie_new_block_received
+      - name: bsc_prod_chappie_new_block_received
+      - name: vault_trading_config
+      - name: http_dumps
+      - name: bsc_http_dumps
+      - name: prod_chappie_failed_treasury_ops
+      - name: bsc_prod_chappie_failed_treasury_ops
+
+  - name: raw_ch_prod3
+    database: raw_ch_prod3
+    tables:
+      - name: chappie_arb_ops
+      - name: prod_chappie_new_block_received
+      - name: http_dumps
+      - name: prod_chappie_failed_treasury_ops
+
+  - name: raw_ch_qb
+    database: raw_ch_qb
+    tables:
+      - name: chappie_arb_ops
+      - name: arbitrum_chappie_arb_ops
+      - name: eth_tokyo_chappie_arb_ops
+      - name: prod_chappie_new_block_received
+      - name: eth_tokyo_prod_chappie_new_block_received
+      - name: arbitrum_prod_chappie_new_block_received
+      - name: http_dumps
+      - name: arbitrum_http_dumps
+      - name: eth_tokyo_http_dumps
+      - name: prod_chappie_failed_treasury_ops
+      - name: eth_tokyo_prod_chappie_failed_treasury_ops
+      - name: arbitrum_prod_chappie_failed_treasury_ops
+      - name: chappie_graph_swaps
+
+  - name: raw_external
+    database: raw_external
+    tables:
+      - name: dex_data_realtime
+      - name: vault_trading_config
+      - name: dex_data_swaps
+      - name: txs_data
+      - name: otc_market_prices
+      - name: token_addresses
+
+  - name: raw_data_aqua
+    database: raw_data_aqua
+    tables:
+      - name: lnk_block_txs
+      - name: txs_pool_w_flow

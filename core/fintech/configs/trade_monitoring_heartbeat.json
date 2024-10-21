@@ -1,0 +1,267 @@
+{
+    "setups" : [
+        {
+            "host": "prod-qb-rox-eth-chappie-01",
+            "arb_ops_table": "rox_eth.chappie_arb_ops",
+            "otc_prices_table": "rox_eth.chappie_otc_prices",
+            "bundle_table": "metrics_rox_eth.prod_flash_send_stats",
+            "description": "ETH-London",
+            "enabled": true,
+            "prices_threshold": 10,
+            "deals_threshold": 3,
+            "pairs": [
+                {
+                    "name": "ETHUSDC",
+                    "otcTicker": "bETHUSC",
+                    "enabled": true,
+                    "deals": 100,
+                    "arb_ops": 2,
+                    "priority": "P1"
+                },
+                {
+                    "name": "ETHUSDT",
+                    "otcTicker": "bETHUST",
+                    "enabled": true,
+                    "deals": 100,
+                    "arb_ops": 2,
+                    "priority": "P1"
+                },
+                {
+                    "name": "ETHWBTC",
+                    "otcTicker": "bETHWBT",
+                    "enabled": true,
+                    "deals": 100,
+                    "arb_ops": 6,
+                    "priority": "P1"
+                }, 
+                {
+                    "name": "WBTCUSDC",
+                    "otcTicker": "bWBTUSC",
+                    "enabled": true,
+                    "deals": 100,
+                    "arb_ops": 18,
+                    "priority": "P1"
+                }, 
+                {
+                    "name": "WBTCUSDT",
+                    "otcTicker": "bWBTUST",
+                    "enabled": true,
+                    "deals": 100,
+                    "arb_ops": 18,
+                    "priority": "P1"
+                }, 
+                {
+                    "name": "ETHDAI",
+                    "otcTicker": "bETHDAI",
+                    "enabled": false,
+                    "deals": 100,
+                    "arb_ops": 12,
+                    "priority": "P1"
+                }   
+            ]
+        },
+        {
+            "host": "prod-qb-rox-eth-tokyo-chappie-01", 
+            "description": "ETH-Tokyo",
+            "arb_ops_table": "rox_eth_tokyo.chappie_arb_ops",
+            "otc_prices_table": "rox_eth_tokyo.chappie_otc_prices",
+            "bundle_table": "metrics_rox_eth_tokyo.prod_flash_send_stats",
+            "priority": "P1",
+            "enabled": true,
+            "prices_threshold": 10,
+            "deals_threshold": 3,
+            "pairs": [
+                {
+                    "name": "ETHUSDC",
+                    "otcTicker": "bETHUSC",
+                    "enabled": true,
+                    "deals": 100,
+                    "arb_ops": 2,
+                    "priority": "P1"
+                },
+                {
+                    "name": "ETHUSDT",
+                    "otcTicker": "bETHUST",
+                    "enabled": true,
+                    "deals": 100,
+                    "arb_ops": 2,
+                    "priority": "P1"
+                },
+                {
+                    "name": "ETHWBTC",
+                    "otcTicker": "bETHWBT",
+                    "enabled": true,
+                    "deals": 100,
+                    "arb_ops": 6,
+                    "priority": "P1"
+                }, 
+                {
+                    "name": "WBTCUSDC",
+                    "otcTicker": "bWBTUSC",
+                    "enabled": true,
+                    "deals": 100,
+                    "arb_ops": 18,
+                    "priority": "P1"
+                }, 
+                {
+                    "name": "WBTCUSDT",
+                    "otcTicker": "bWBTUST",
+                    "enabled": true,
+                    "deals": 100,
+                    "arb_ops": 18,
+                    "priority": "P1"
+                }        
+            ]
+        },
+        {
+            "host": "prod-qb-rox-eth-chapie-arb-graph", 
+            "description": "ETH-Graph",
+            "arb_ops_table": "rox_eth.chappie_arb_ops",
+            "otc_prices_table": "rox_eth.chappie_otc_prices",
+            "bundle_table": "metrics_rox_eth.prod_flash_send_stats",
+            "priority": "P1",
+            "enabled": true,
+            "prices_threshold": 10,
+            "deals_threshold": 3,
+            "pairs": [
+                {
+                    "name": "ETHUSDC",
+                    "otcTicker": "bETHUSC",
+                    "enabled": true,
+                    "deals": 100,
+                    "arb_ops": 2,
+                    "priority": "P1"
+                },
+                {
+                    "name": "ETHUSDT",
+                    "otcTicker": "bETHUST",
+                    "enabled": true,
+                    "deals": 100,
+                    "arb_ops": 2,
+                    "priority": "P1"
+                },
+                {
+                    "name": "ETHWBTC",
+                    "otcTicker": "bETHWBT",
+                    "enabled": true,
+                    "deals": 100,
+                    "arb_ops": 6,
+                    "priority": "P1"
+                }, 
+                {
+                    "name": "WBTCUSDC",
+                    "otcTicker": "bWBTUSC",
+                    "enabled": true,
+                    "deals": 100,
+                    "arb_ops": 18,
+                    "priority": "P1"
+                }, 
+                {
+                    "name": "WBTCUSDT",
+                    "otcTicker": "bWBTUST",
+                    "enabled": true,
+                    "deals": 100,
+                    "arb_ops": 18,
+                    "priority": "P1"
+                }        
+            ]
+        },
+        {
+            "host": "prod-qb-rox-eth-chappie-02",
+            "arb_ops_table": "rox_eth.chappie_arb_ops",
+            "otc_prices_table": "rox_eth.chappie_otc_prices",
+            "bundle_table": "metrics_rox_eth.prod_flash_send_stats",
+            "description": "ETH-Gigachappie",
+            "enabled": true,
+            "prices_threshold": 10,
+            "deals_threshold": 200,
+            "pairs": [
+                {
+                    "name": "ETHUSDC",
+                    "otcTicker": "bETHUSC",
+                    "enabled": true,
+                    "deals": 99999,
+                    "arb_ops": 2,
+                    "priority": "P1"
+                },
+                {
+                    "name": "ETHUSDT",
+                    "otcTicker": "bETHUST",
+                    "enabled": true,
+                    "deals": 99999,
+                    "arb_ops": 2,
+                    "priority": "P1"
+                },
+                {
+                    "name": "ETHWBTC",
+                    "otcTicker": "bETHWBT",
+                    "enabled": true,
+                    "deals": 99999,
+                    "arb_ops": 6,
+                    "priority": "P1"
+                }, 
+                {
+                    "name": "WBTCUSDC",
+                    "otcTicker": "bWBTUSC",
+                    "enabled": true,
+                    "deals": 99999,
+                    "arb_ops": 18,
+                    "priority": "P1"
+                }, 
+                {
+                    "name": "WBTCUSDT",
+                    "otcTicker": "bWBTUST",
+                    "enabled": true,
+                    "deals": 99999,
+                    "arb_ops": 18,
+                    "priority": "P1"
+                }, 
+                {
+                    "name": "ETHDAI",
+                    "otcTicker": "bETHDAI",
+                    "enabled": false,
+                    "deals": 99999,
+                    "arb_ops": 12,
+                    "priority": "P1"
+                }   
+            ]
+        },
+        {
+            "host": "prod-qb-rox-arbitrum-chappie-01", 
+            "description": "Arbitrum",
+            "arb_ops_table": "rox_arbitrum.chappie_arb_ops",
+            "otc_prices_table": "rox_arbitrum.chappie_otc_prices",
+            "bundle_table": "",
+            "priority": "P1",
+            "enabled": true,
+            "prices_threshold": 20,
+            "deals_threshold": 30,
+            "pairs": [
+                {
+                    "name": "ETHUSDC",
+                    "otcTicker": "bETHUSC",
+                    "enabled": true,
+                    "deals": 500,
+                    "arb_ops": 12,
+                    "priority": "P1"
+                },
+                {
+                    "name": "ETHUSDT",
+                    "otcTicker": "bETHUST",
+                    "enabled": true,
+                    "deals": 500,
+                    "arb_ops": 12,
+                    "priority": "P1"
+                },
+                {
+                    "name": "ARBETH",
+                    "otcTicker": "bARBETH",
+                    "enabled": false,
+                    "deals": 500,
+                    "arb_ops": 12,
+                    "priority": "P1"
+                }       
+            ]
+        }        
+    ]
+}
