@@ -18,21 +18,10 @@ Below is the structure of files and folders in the repository
 
 Airflow scipts with following breakdown:
 
-**crm**:
-
-Example of script for fetching data from AmoCRM and Bitrix 
-
-**marketing**:
-
-Example of script for fetching data from marketing sources: Yandex Direct, Google Ads, Mailchimp, Facebook, Yandex Metrica, Google Search Console
-
-**blockchain**:
-
-Example of script for fetching data from blockchains: Ethereum, BSC, Arbitrum
-
-**others**:
-
-Example of script for fetching data from other sources: Microsoft OneDrive
+- **crm**: Example of script for fetching data from AmoCRM and Bitrix 
+- **marketing**: Example of script for fetching data from marketing sources: Yandex Direct, Google Ads, Mailchimp, Facebook, Yandex Metrica, Google Search Console
+- **blockchain**: Example of script for fetching data from blockchains: Ethereum, BSC, Arbitrum
+- **others**: Example of script for fetching data from other sources: Microsoft OneDrive
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -40,22 +29,15 @@ Example of script for fetching data from other sources: Microsoft OneDrive
 
 Example of DBT models
 
-**fintech**:
-
-Example of models for fintech project
-
-**proptech**:
-
-Example of models for proptech project
+- **fintech**: Example of models for fintech project
+- **proptech**: Example of models for proptech project
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Core
+### 3. Core
 
 Copy of repositories used for my projects with all dependencies
 
-**fintech**:
-
-Example of models for fintech project
+- **fintech**: Example of models for fintech project
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
