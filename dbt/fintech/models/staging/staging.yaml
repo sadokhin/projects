@@ -1,0 +1,75 @@
+version: 2
+
+models:
+    - name: stg_arb_ops
+      description: staging model with union arb ops data from prod2, prod3 and qb setups
+      columns:
+        - name: chain
+          description: The name of blockchain (ETH, BSC, Arbitrum)
+        - name: host
+          description: Setup's host
+        - name: timestamp
+          description: DateTime(6,'UTC') of founded arb opportunity
+        - name: hash
+          description: Transaction hash
+        - name: block_number
+          description: Current block number
+        - name: pair
+          description: Pair with tokens
+        - name: source_dex
+          description: DEX name with _FeeTier
+        - name: price_btc_usd
+          description: BTC price in USD
+        - name: price_eth_usd
+          description: ETH price in USD
+        - name: mined
+          description: Trading strategy. If true - mined, else - mempool
+        - name: x
+          description: Arb opportunity ID
+        - name: price_cex
+          description: OTC price for arb opportunity
+        - name: price_dex
+          description: DEX price for arb opportunity
+        - name: is_dex_buying
+          description: DEX side. If 1 - Buying on DEX, Sell on CEX
+        - name: symbol_quote
+          description: Token quote
+        - name: symbol_base
+          description: Token base
+        - name: size
+          description: Size of token which we want to sell/buy on DEX and buy/sell on CEX
+        - name: gas_used
+          description: Gas
+        - name: gas_price
+          description: Price for gas in WEI
+        - name: bribe
+          description: Bribe for transaction to builder in WEI
+        - name: size_usd
+          description: Arb volume in USD
+        - name: gross_profit
+          description: Gross profit for arb opportunity
+        - name: pair_type
+          description: Liquid or Shit pair
+        - name: base_fee_usd
+          description: Network fee in USD
+        - name: bribe_usd
+          description: Bribe for transaction to builder in USD
+
+    - name: stg_dex_volume
+      description: staging model with aggragated dex volumes for Liquid and Ship pairs only from our pools
+
+    - name: stg_txs_data
+      description: staging model with all transactions in ETH and BTC chains
+
+    - name: stg_successful_hedge
+      description: staging model with union hedge tx body, bribes and fees from prod2, prod3 and qb setups
+
+    - name: stg_orbit_trade_events
+      description: staging model with union trade events 'FoundManagerTx','FoundTrade', 'HttpStart','SendOtc','ParseHash', 'ParseDone','NetworkDelay' from prod2, prod3 and qb setups
+
+    - name: stg_chappie_block_received
+      description: staging model with union timestamp of receiving blocks by chappie from prod2, prod3 and qb setups
+      
+
+
+      

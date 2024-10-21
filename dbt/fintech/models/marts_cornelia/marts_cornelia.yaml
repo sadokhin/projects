@@ -1,0 +1,5 @@
+version: 2
+
+models:
+    - name: liquidations_report
+      description: data mart with all liquidations for bug and quoters report
