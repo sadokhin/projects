@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: stg_amocrm_leads
+    description: "This tables contains raw data with leads from amocrm source"
+  - name: stg_amocrm_calls
+    description: "This tables contains raw data with calls from amocrm source"
+  - name: stg_amocrm_emails
+    description: "This tables contains raw data with outgoing emails from amocrm source"
+  - name: stg_amocrm_messages
+    description: "This tables contains raw data with wa messages from amocrm source"
+  - name: stg_amocrm_users
+    description: "This tables contains raw data with users from amocrm source"

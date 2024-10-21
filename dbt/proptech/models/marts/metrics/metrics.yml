@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: employees
+    description: "Final table with metrics by employees"

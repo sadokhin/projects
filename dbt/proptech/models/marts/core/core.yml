@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: call_center
+    description: "Final table with leads and metrics for Call Center Team"
